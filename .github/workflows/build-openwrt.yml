@@ -7,10 +7,9 @@ on:
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: openwrt-25.12
+  # 将所有需要的独立软件包、内核模块（kmod）、LuCI 插件完整填写在这里，用空格隔开
+  CUSTOM_PACKAGES: "kmod-cpufreq kmod-cpufreq-schedutil luci-app-cpufreq luci-i18n-cpufreq-zh-cn luci-app-diskman luci-app-ksmbd luci-app-hd-idle luci-app-autoreboot"
   FEEDS_CONF: feeds.conf.default
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
-  TZ: Asia/Shanghai
 
 jobs:
   build:
@@ -65,14 +64,16 @@ jobs:
 
     - name: Generate release tag
       id: tag
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
         echo "release_tag=$(date +"%Y.%m.%d-%H%M-immortalwrt25.12-cmcc_rax3000m")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "CMCC RAX3000M NAND 自编译固件" >> release.txt
         echo "后台：192.168.1.1" >> release.txt
         echo "账号：root / 密码：无" >> release.txt
-        echo "集成组件：diskman ksmb hd-idle autoreboot cpufreq" >> release.txt
+        echo "预装组件：$CUSTOM_PACKAGES" >> release.txt
         echo "编译源码：$REPO_URL 分支 $REPO_BRANCH" >> release.txt
+        echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
