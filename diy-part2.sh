@@ -18,7 +18,7 @@ for pkg in $CUSTOM_PACKAGES; do
 done
 
 # 3. 底层内核特性注入
-TARGET_CONFIG="target/linux/mediatek/filogic/config-6.6"
+TARGET_CONFIG="target/linux/mediatek/filogic/config-6.12"
 if [ -f "$TARGET_CONFIG" ]; then
     sed -i '/CONFIG_CPU_FREQ/d' "$TARGET_CONFIG"
     echo "CONFIG_CPU_FREQ=y" >> "$TARGET_CONFIG"
