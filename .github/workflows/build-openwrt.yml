@@ -6,7 +6,7 @@ on:
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: openwrt-25.12
-  CUSTOM_PACKAGES: "kmod-cpufreq kmod-cpufreq-schedutil luci-app-cpufreq luci-i18n-cpufreq-zh-cn luci-app-diskman luci-app-ksmbd luci-app-hd-idle luci-app-autoreboot"
+  CUSTOM_PACKAGES: "luci-app-diskman luci-app-ksmbd luci-app-hd-idle luci-app-autoreboot"
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
