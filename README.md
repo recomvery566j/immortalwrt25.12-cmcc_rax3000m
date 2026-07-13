@@ -9,7 +9,6 @@
 * **底层源码**：ImmortalWrt 官方主线 `openwrt-25.12` 分支
 * **系统内核**：Linux 6.6
 * **目标硬件**：MediaTek MT7981B (Filogic 820) / CMCC RAX3000M NAND
-* **温控机制**：于底层设备树与内核配置文件中强行注入 `cpufreq` 动态调频特性，默认启用 `schedutil` 调度策略
 
 ## 固件编译与提取流程
 
